@@ -1,3 +1,4 @@
+import PartnersSection from "@/components/PartnersSection";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/lib/site";
@@ -96,20 +97,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section bg-slate-50">
-        <div className="mx-auto max-w-5xl px-5 text-center">
-          <Reveal>
-            <p className="font-mono text-xs tracking-widest text-[color:var(--color-brand-2)] uppercase">Clients We&apos;ve Worked With</p>
-            <h2 className="font-display mt-3 text-4xl md:text-6xl font-bold">Trusted By</h2>
-            <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-6">
-              {site.signatureClients.map((c) => (
-                <div key={c} className="card p-6 font-display text-xl text-slate-600">{c}</div>
-              ))}
-            </div>
-            <Link href="/portfolio" className="btn btn-primary mt-10">See Our Work</Link>
-          </Reveal>
-        </div>
-      </section>
+      <PartnersSection />
     </>
   );
 }

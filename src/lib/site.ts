@@ -18,6 +18,9 @@ export const site = {
   email: "events@aerollerz.com",
   whatsapp: "919840731631",
   instagram: "aerollerz_maaji",
+  // Paste full page URLs. Buttons stay hidden until a URL is set.
+  facebook: "https://www.facebook.com/gamemaaji.maaji/",
+  youtube: "https://www.youtube.com/@aerollerzentertainment148",
   address: {
     street: "No. 40, II Floor, Rama Street, Nungambakkam",
     city: "Chennai",
@@ -28,14 +31,6 @@ export const site = {
   },
   rating: { value: 4.6, count: 26 },
   hours: "Open 24 hours",
-  signatureClients: [
-    "Ministry of Culture, Government of India",
-    "CIO Association",
-    "Rotary International",
-    "Accsys",
-    "PFC",
-    "BLM Housing Society",
-  ],
   stats: [
     { value: 24, suffix: "+", label: "Years in Chennai" },
     { value: 500, suffix: "+", label: "Events Delivered" },

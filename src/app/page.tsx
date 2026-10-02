@@ -1,3 +1,5 @@
+import PartnersSection from "@/components/PartnersSection";
+import { getPartners } from "@/lib/partners";
 import Link from "next/link";
 import { site, waLink } from "@/lib/site";
 import { services } from "@/lib/services";
@@ -112,10 +114,12 @@ export default function Home() {
       </section>
 
       {/* MARQUEE */}
-      <section className="border-y border-slate-200 bg-white py-8 pause-on-hover">
-        <p className="text-center font-mono text-xs tracking-widest text-slate-500 uppercase mb-5">Trusted by Chennai&apos;s most ambitious brands</p>
-        <Marquee items={site.signatureClients} />
-      </section>
+      {getPartners().length > 0 && (
+        <section className="border-y border-slate-200 bg-white py-8 pause-on-hover">
+          <p className="text-center font-mono text-xs tracking-widest text-slate-500 uppercase mb-5">Trusted by Chennai&apos;s most ambitious brands</p>
+          <Marquee items={getPartners()} />
+        </section>
+      )}
 
       {/* EVENT PHOTOS GALLERY — masonry parallax */}
       <EventPhotosGallery />
@@ -226,6 +230,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <PartnersSection />
     </>
   );
 }

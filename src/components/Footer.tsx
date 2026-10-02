@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import SocialLinks from "./SocialLinks";
 import { site, waLink } from "@/lib/site";
 import { services } from "@/lib/services";
 
@@ -11,6 +12,7 @@ export default function Footer() {
           <Logo className="h-16 w-auto" />
           <p className="mt-4 text-sm text-slate-600 max-w-xs">{site.tagline}</p>
           <p className="mt-2 text-xs text-slate-500">Est. {site.founded} · Nungambakkam, Chennai</p>
+          <SocialLinks className="mt-5" />
         </div>
         <div>
           <h3 className="font-display text-lg">Services</h3>

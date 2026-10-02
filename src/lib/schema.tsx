@@ -10,7 +10,7 @@ export const orgSchema = () => ({
   logo: { "@type": "ImageObject", url: `${site.url}/brand/aerollerz-logo.png` },
   foundingDate: String(site.founded),
   founder: { "@type": "Person", name: site.founder.name },
-  sameAs: [`https://instagram.com/${site.instagram}`],
+  sameAs: [`https://instagram.com/${site.instagram}`, site.facebook, site.youtube].filter(Boolean),
 });
 
 export const websiteSchema = () => ({
@@ -48,7 +48,7 @@ export const localBusinessSchema = () => ({
   ],
   openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], opens: "00:00", closes: "23:59" }],
   aggregateRating: { "@type": "AggregateRating", ratingValue: site.rating.value, reviewCount: site.rating.count },
-  sameAs: [`https://instagram.com/${site.instagram}`],
+  sameAs: [`https://instagram.com/${site.instagram}`, site.facebook, site.youtube].filter(Boolean),
 });
 
 export const serviceSchema = (s: { title: string; description: string; slug: string; hero: string }) => ({
