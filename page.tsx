@@ -60,9 +60,6 @@ export default function Home() {
       {/* Instagram Events Showcase - FEATURED AT TOP */}
       <InstagramEventsShowcase />
 
-      {/* Trusted By Carousel Section */}
-      <TrustedByCarousel />
-
       {/* About Section */}
       <section className="py-20 bg-white">
         <div className="mx-auto max-w-7xl px-6">
@@ -179,6 +176,9 @@ export default function Home() {
 
       {/* Reels Showcase */}
       <ReelsShowcase />
+
+      {/* Trusted By Section */}
+      <TrustedByCarousel />
 
       {/* Portfolio Section */}
       <section id="portfolio" className="py-20 bg-white">
