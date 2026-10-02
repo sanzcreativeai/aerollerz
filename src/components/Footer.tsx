@@ -1,48 +1,112 @@
-import Link from "next/link";
-import Logo from "./Logo";
-import { site, waLink } from "@/lib/site";
-import { services } from "@/lib/services";
+'use client';
+
+import Link from 'next/link';
+import { business } from '@/lib/site-data';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-slate-200 bg-slate-50">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
-        <div>
-          <Logo className="h-16 w-auto" />
-          <p className="mt-4 text-sm text-slate-600 max-w-xs">{site.tagline}</p>
-          <p className="mt-2 text-xs text-slate-500">Est. {site.founded} · Nungambakkam, Chennai</p>
+    <footer className="bg-bg-secondary border-t border-line-soft">
+      <div className="mx-auto max-w-7xl px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          {/* Brand */}
+          <div>
+            <h3 className="text-xl font-bold text-text-primary mb-4">{business.shortName}</h3>
+            <p className="text-text-secondary text-sm">{business.tagline}</p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-semibold text-text-primary mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/" className="text-text-secondary hover:text-accent-purple transition text-sm">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-text-secondary hover:text-accent-purple transition text-sm">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/#portfolio" className="text-text-secondary hover:text-accent-purple transition text-sm">
+                  Portfolio
+                </Link>
+              </li>
+              <li>
+                <Link href="/#faq" className="text-text-secondary hover:text-accent-purple transition text-sm">
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="font-semibold text-text-primary mb-4">Legal</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/terms" className="text-text-secondary hover:text-accent-purple transition text-sm">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="text-text-secondary hover:text-accent-purple transition text-sm">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/copyright" className="text-text-secondary hover:text-accent-purple transition text-sm">
+                  Copyright
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-semibold text-text-primary mb-4">Contact</h4>
+            <p className="text-text-secondary text-sm mb-2">
+              <a href={`tel:${business.phone}`} className="hover:text-accent-purple transition">
+                {business.phoneDisplay}
+              </a>
+            </p>
+            <p className="text-text-secondary text-sm mb-2">
+              <a href={`mailto:${business.email}`} className="hover:text-accent-purple transition">
+                {business.email}
+              </a>
+            </p>
+            <p className="text-text-secondary text-sm">{business.address.city}, India</p>
+          </div>
         </div>
-        <div>
-          <h3 className="font-display text-lg">Services</h3>
-          <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
-            {services.slice(0, 7).map((s) => <li key={s.slug}><Link className="hover:text-[color:var(--color-brand-2)]" href={`/${s.slug}`}>{s.short}</Link></li>)}
-            <li><Link className="hover:text-[color:var(--color-brand-2)]" href="/#services">All services →</Link></li>
-          </ul>
+
+        {/* Divider */}
+        <div className="border-t border-line-soft my-8"></div>
+
+        {/* Bottom */}
+        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-text-secondary">
+          <p>&copy; {currentYear} {business.name}. All rights reserved.</p>
+          <div className="flex gap-6 mt-4 md:mt-0">
+            <a
+              href={`https://instagram.com/${business.instagram.replace('@', '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent-purple transition"
+            >
+              Instagram
+            </a>
+            <a
+              href={`https://wa.me/${business.whatsapp.replace(/\D/g, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent-purple transition"
+            >
+              WhatsApp
+            </a>
+          </div>
         </div>
-        <div>
-          <h3 className="font-display text-lg">Company</h3>
-          <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
-            <li><Link className="hover:text-[color:var(--color-brand-2)]" href="/about">About</Link></li>
-            <li><Link className="hover:text-[color:var(--color-brand-2)]" href="/portfolio">Portfolio</Link></li>
-            <li><Link className="hover:text-[color:var(--color-brand-2)]" href="/blog">Journal</Link></li>
-            <li><Link className="hover:text-[color:var(--color-brand-2)]" href="/contact">Contact</Link></li>
-            <li><Link className="hover:text-[color:var(--color-brand-2)]" href="/privacy">Privacy</Link></li>
-            <li><Link className="hover:text-[color:var(--color-brand-2)]" href="/terms">Terms</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="font-display text-lg">Contact</h3>
-          <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
-            <li><a className="hover:text-[color:var(--color-brand-2)]" href={site.phoneHref}>{site.phone}</a></li>
-            <li><a className="hover:text-[color:var(--color-brand-2)]" href={`mailto:${site.email}`}>{site.email}</a></li>
-            <li><a className="hover:text-[color:var(--color-brand-2)]" href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-            <li><a className="hover:text-[color:var(--color-brand-2)]" href={`https://instagram.com/${site.instagram}`} target="_blank" rel="noopener noreferrer">@{site.instagram}</a></li>
-            <li className="pt-2 text-xs text-slate-500 leading-relaxed">{site.address.street}, {site.address.city} {site.address.pincode}</li>
-          </ul>
-        </div>
-      </div>
-      <div className="border-t border-slate-200 py-5 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} {site.name}. All rights reserved. · Site crafted by SanzCreative.ai
       </div>
     </footer>
   );
