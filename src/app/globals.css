@@ -1,204 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --color-bg: 255 255 255;
-    --color-bg-secondary: 245 245 248;
-    --color-text-primary: 20 20 30;
-    --color-text-secondary: 100 100 120;
-    --color-line-soft: 220 220 230;
-    --color-accent-purple: 168 85 247;
-    --color-accent-cyan: 34 211 238;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  html {
-    scroll-behavior: smooth;
-  }
+html {
+  scroll-behavior: smooth;
+}
 
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@supports (font-variation-settings: normal) {
   body {
-    @apply bg-bg text-text-primary;
-    font-feature-settings: "rlig" 1, "calt" 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
-
-  * {
-    @apply border-line-soft;
-  }
-}
-
-/* Loading screen animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.1;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes dotBounce {
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-10px);
-    opacity: 0.5;
-  }
-}
-
-/* Smooth scrolling for pages */
-@layer components {
-  .smooth-scroll {
-    scroll-behavior: smooth;
-  }
-
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Glass morphism effect */
-  .glass {
-    @apply backdrop-blur-md bg-white/30 border border-white/20;
-  }
-
-  /* Grain texture overlay */
-  .grain {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' seed='2'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    background-size: 200px 200px;
-  }
-
-  /* Responsive text sizing with clamp */
-  .text-responsive-sm {
-    @apply text-sm md:text-base lg:text-lg;
-  }
-
-  .text-responsive-md {
-    @apply text-base md:text-lg lg:text-xl;
-  }
-
-  .text-responsive-lg {
-    @apply text-lg md:text-2xl lg:text-3xl;
-  }
-
-  .text-responsive-xl {
-    @apply text-2xl md:text-3xl lg:text-4xl;
-  }
-
-  .text-responsive-2xl {
-    @apply text-3xl md:text-4xl lg:text-5xl;
-  }
-
-  /* Link styles */
-  a {
-    @apply transition-colors duration-200;
-  }
-
-  /* Selection styling */
-  ::selection {
-    @apply bg-accent-purple/20 text-text-primary;
-  }
-
-  /* Button reset */
-  button {
-    @apply outline-none transition-all duration-200;
-  }
-
-  /* Input reset */
-  input,
-  textarea {
-    @apply outline-none;
-  }
-
-  /* Scrollbar styling */
-  ::-webkit-scrollbar {
-    @apply w-2 h-2;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-bg-secondary;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-accent-purple/30 rounded-full hover:bg-accent-purple/50;
-  }
-}
-
-/* Animations */
-@layer utilities {
-  .animate-fadeIn {
-    animation: fadeIn 0.6s ease-out;
-  }
-
-  .animate-fadeOut {
-    animation: fadeOut 0.6s ease-out;
-  }
-
-  .animate-gradientShift {
-    animation: gradientShift 3s ease infinite;
-  }
-
-  .animate-pulseGlow {
-    animation: pulseGlow 2s ease-in-out infinite;
-  }
-
-  .animate-dotBounce {
-    animation: dotBounce 1.4s ease-in-out infinite;
-  }
-}
-
-/* Responsive container */
-@layer components {
-  .container-responsive {
-    @apply mx-auto px-6 sm:px-8 lg:px-12 xl:px-16;
-  }
-
-  .max-w-responsive {
-    @apply max-w-6xl;
+    font-family: "Segoe UI Variable", "Helvetica Neue", sans-serif;
   }
 }
