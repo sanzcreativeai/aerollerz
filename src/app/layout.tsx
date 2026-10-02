@@ -1,86 +1,50 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Big_Shoulders, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import { site } from "@/lib/site";
+import { JsonLd, orgSchema, websiteSchema } from "@/lib/schema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
-import ChatWidget from "@/components/ChatWidget";
+import ChatBot from "@/components/ChatBot";
+import ScrollProgress from "@/components/ScrollProgress";
 import LoadingScreen from "@/components/LoadingScreen";
-import { business } from "@/lib/site-data";
+import LightboxRoot from "@/components/Lightbox";
+
+const display = Big_Shoulders({ subsets: ["latin"], weight: ["600", "700", "800"], variable: "--nf-display", display: "swap" });
+const body = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--nf-body", display: "swap" });
+const code = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--nf-code", display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(business.domain),
-  title: {
-    default: "Aerollerz Media & Entertainment — Event Management Company in Chennai",
-    template: "%s — Aerollerz Media & Entertainment",
-  },
-  description:
-    "Aerollerz Media & Entertainment is a Chennai-based event management company producing corporate events, award ceremonies, live entertainment, and brand activations since 2002.",
-  keywords: [
-    "event management company Chennai",
-    "corporate event management Chennai",
-    "event management Nungambakkam",
-    "wedding events",
-    "concert production",
-    "brand activations",
-  ],
-  openGraph: {
-    title: "Aerollerz Media & Entertainment",
-    description:
-      "Chennai event management company — corporate events, award ceremonies, live entertainment, and brand activations since 2002.",
-    url: business.domain,
-    siteName: business.name,
-    locale: "en_IN",
-    type: "website",
-  },
-  alternates: { canonical: "/" },
+  metadataBase: new URL(site.url),
+  title: { default: `${site.name} | Event Management & Wedding Planners in Chennai`, template: `%s | ${site.short}` },
+  description: site.description,
+  keywords: ["event management company in Chennai", "wedding planners in Chennai", "wedding decorators in Chennai", "corporate event management Chennai", "event planners in Chennai", "Aerollerz"],
+  authors: [{ name: site.founder.name }],
+  creator: site.name,
+  openGraph: { title: site.name, description: site.description, url: site.url, siteName: site.name, locale: "en_IN", type: "website", images: [{ url: "/portfolio/portfolio-01.jpg", width: 1200, height: 630 }] },
+  twitter: { card: "summary_large_image", title: site.name, description: site.description, images: ["/portfolio/portfolio-01.jpg"] },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  alternates: { canonical: site.url },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "EventPlanner",
-  name: business.name,
-  url: business.domain,
-  telephone: business.phone,
-  email: business.email,
-  foundingDate: String(business.founded),
-  founder: { "@type": "Person", name: business.founder },
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: business.address.line1,
-    addressLocality: business.address.city,
-    addressRegion: business.address.region,
-    postalCode: business.address.postalCode,
-    addressCountry: business.address.country,
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: business.rating.value,
-    reviewCount: business.rating.count,
-  },
-};
+export const viewport: Viewport = { themeColor: "#0a0e1a", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="min-h-full flex flex-col bg-bg text-ink">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+    <html lang="en" className={`${display.variable} ${body.variable} ${code.variable}`}>
+      <body>
+        <JsonLd data={orgSchema()} />
+        <JsonLd data={websiteSchema()} />
         <LoadingScreen />
+        <ScrollProgress />
         <Header />
-        <main className="flex-1">{children}</main>
+        <LightboxRoot>
+          <main>{children}</main>
+        </LightboxRoot>
         <Footer />
         <FloatingActions />
-        <ChatWidget />
+        <ChatBot />
       </body>
     </html>
   );
